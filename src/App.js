@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route, Router } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 
@@ -7,6 +7,7 @@ import SearchBar from "./components/SearchBar";
 import HomePage from "./components/HomePage";
 import PeopleView from "./components/PeopleView";
 import People from "./data-models/People";
+import Navbar from "./components/layout/Navbar";
 
 export const App = () => {
   const [query, setQuery] = useState("");
@@ -45,20 +46,19 @@ export const App = () => {
   };
 
   return (
-    <div className="container">
-      <SearchBar getQuery={(e) => filterPeople(e)} />
-      <PeopleView people={query ? query : people} maximumLoadedCards={100}/>
-      {/* <HashRouter>
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route exact path="/SearchBar">
-            <SearchBar />
-          </Route>
-        </Switch>
-      </HashRouter> */}
-    </div>
+    <HashRouter>
+      <div className="App">
+        <Navbar />
+        <div className="container">
+          <Switch>
+            <Route exact path="/">
+              <SearchBar getQuery={(e) => filterPeople(e)} />
+              <PeopleView people={query ? query : people} maximumLoadedCards={10}/>
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </HashRouter>
   );
 };
 
