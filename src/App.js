@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
 import axios from "axios";
-import InfiniteScroll from "react-infinite-scroll-component";
 import "./App.css";
 
 import SearchBar from "./components/SearchBar";
 import HomePage from "./components/HomePage";
 import PeopleView from "./components/PeopleView";
 import People from "./data-models/People";
-import { Prev } from "react-bootstrap/esm/PageItem";
 
 export const App = () => {
   const [query, setQuery] = useState("");
@@ -49,7 +47,7 @@ export const App = () => {
   return (
     <div className="container">
       <SearchBar getQuery={(e) => filterPeople(e)} />
-      <PeopleView people={query ? query : people} />
+      <PeopleView people={query ? query : people} maximumLoadedCards={100}/>
       {/* <HashRouter>
         <Switch>
           <Route exact path="/">
