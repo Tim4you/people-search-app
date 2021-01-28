@@ -2,28 +2,31 @@ import React, { useEffect, useState } from "react";
 import PeopleCard from "./PeopleCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const PeopleView = ({ people }) => {
-  // const [hasMore, setHasMore] = useState(true);
+const PeopleView = ({ people, imagesNumber }) => {
+  const [more, setMore] = useState(true);
   // const [items, setItems] = useState(Array.from({ length: 20 }));
   const [page, setPage] = useState(1);
-  const [items, setItems] = useState(people.slice(0,  20));
+  const [items, setItems] = useState([]);
 
-  const fetchMoreData = () => {
-    // setTimeout(() => {
-      setPage((page) => page + 1)
-      // debugger
-      setItems(people.slice(0, page * 20));
-    // }, 500);
-  };
+  useEffect(() => {
+    fetchMoreData();
+    // eslint-disable-next-line
+  }, [page, people]);
 
-  // https://github.com/ankeetmaini/react-infinite-scroll-component#readme
-  // pagination
+  function fetchMoreData() {
+    if (page === 1) {
+      setItems(people.slice(0, 10));
+      return;
+    }
+    setMore(people.length > items.length);
+    setItems(people.slice(0, page * 10));
+  }
 
   return (
     <InfiniteScroll
       dataLength={items.length}
-      next={() => fetchMoreData()}
-      hasMore={true}
+      next={() => setPage((page) => page + 1)}
+      hasMore={more}
       loader={<h4>Loading...</h4>}
     >
       <section className="cards">

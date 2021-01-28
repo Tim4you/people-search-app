@@ -8,6 +8,7 @@ import SearchBar from "./components/SearchBar";
 import HomePage from "./components/HomePage";
 import PeopleView from "./components/PeopleView";
 import People from "./data-models/People";
+import { Prev } from "react-bootstrap/esm/PageItem";
 
 export const App = () => {
   const [query, setQuery] = useState("");
@@ -30,27 +31,25 @@ export const App = () => {
       );
     };
     fetchPeople();
-  }, [query]);
+  }, []);
 
   const filterPeople = (q) => {
     console.log(q);
     setQuery(
       people.filter((person) => {
-        const searchValue = `${person.first_name} ${person.last_name}`;
+        const searchValue = `${person.first_name} ${person.last_name}`.toLowerCase();
         if (!searchValue) {
           return false;
         }
-        return searchValue.includes(q);
+        return searchValue.includes(q.toLowerCase());
       })
     );
   };
+
   return (
     <div className="container">
-      <SearchBar
-        getQuery={(e) => filterPeople(e)}
-      />
-      {query ? <PeopleView people={query} /> : <PeopleView people={people} />}
-
+      <SearchBar getQuery={(e) => filterPeople(e)} />
+      <PeopleView people={query ? query : people} />
       {/* <HashRouter>
         <Switch>
           <Route exact path="/">
