@@ -53,7 +53,7 @@ export const App = () => {
           <Switch>
             <Route exact path="/">
               <SearchBar getQuery={(e) => filterPeople(e)} />
-              <PeopleView people={query ? query : people} maximumLoadedCards={10}/>
+              <PeopleView people={query ? query : people} maximumLoadedCards={100}/>
             </Route>
           </Switch>
         </div>
