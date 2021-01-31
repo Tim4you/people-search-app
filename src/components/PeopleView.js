@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PeopleCard from "./PeopleCard";
 import InfiniteScroll from "react-infinite-scroll-component";
+import PersonPage from "./PersonPage";
 
 const PeopleView = ({ people, maximumLoadedCards }) => {
   const [page, setPage] = useState(1);
@@ -10,7 +11,6 @@ const PeopleView = ({ people, maximumLoadedCards }) => {
     fetchMoreData();
     // eslint-disable-next-line
   }, [page, people]);
-
 
   const fetchMoreData = () => {
     if (page > maximumLoadedCards) {
@@ -22,17 +22,19 @@ const PeopleView = ({ people, maximumLoadedCards }) => {
 
   return (
     <InfiniteScroll
-      dataLength={items.length}
+      dataLength={ items.length}
       next={() => setPage((page) => page + 1)}
       hasMore={true}
       loader={
-        (page === maximumLoadedCards) ? (<h4>Hey bro!!! you are tring to load more than 1000 people...</h4>) : 
-          (<h4>You found  <strong>{items.length}</strong> people</h4>)
+        page === maximumLoadedCards ? 
+        (<h4>Hey bro!!! you are tring to load more than 1000 people...</h4>) 
+        : 
+        (<h4>You found <strong>{items.length}</strong> people</h4>)
       }
     >
       <section className="cards">
         {items.map((person) => (
-          <PeopleCard key={person.id} person={person} />
+            <PeopleCard  key={person.id} person={person} />
         ))}
       </section>
     </InfiniteScroll>

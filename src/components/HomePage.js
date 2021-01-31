@@ -1,12 +1,16 @@
-import React from "react";
-import { Jumbotron, Button } from 'react-bootstrap';
+import React, { Fragment } from "react";
+import { Jumbotron, Button } from "react-bootstrap";
 
 const HomePage = () => {
   return (
-    <div style={{ width: "600px", height: "600px", background: "gray" }}>
-      <h3>HomePage</h3>
-      <Button variant="outline-secondary" href="#/SearchBar">Woof!</Button>
-    </div>
+    <Fragment>
+      <div style={{ width: "600px", height: "600px", background: "gray" }}>
+        <h3>HomePage</h3>
+        <button variant="outline-secondary" href="#/SearchBar">
+          Woof!
+        </button>
+      </div>
+    </Fragment>
   );
 };
 

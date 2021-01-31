@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import PersonPage from "./PersonPage";
+import { withRouter } from "react-router-dom";
 
-const PeopleCard = ({ person }) => {
+const PeopleCard = ({person}) => {
+  // const [personId, setPersonId] = useState(-1);
+  // console.log(person);
   return (
     <div className="card">
       <img src={person.profile_picture} alt="" />
-      {/* <h1>Fashion Industry</h1> */}
       <ul>
-        <li>
+        <li> 
           <strong>Firstname:</strong> {person.first_name}
         </li>
         <li>
@@ -17,13 +20,14 @@ const PeopleCard = ({ person }) => {
           <strong>Phone Number:</strong> {person.phone_number}
         </li>
       </ul>
-      <div className="card-btn">
-        <Link to="/HomePage" className="btn btn-dark btn-sm my-1">
-          More
-        </Link>
+      <Link className="card-btn"  to={`person/${person.id}`}>
+      <div className="btn btn-dark btn-sm my-1">        
+        More
       </div>
+      </Link>
     </div>
   );
 };
 
+// export default withRouter(PeopleCard);
 export default PeopleCard;
