@@ -26,17 +26,10 @@ export const App = () => {
 
   useEffect(() => {
     const fetchPeople = async () => {
-      const result = await axios("./projectcontacts.json");
+      const result = await axios("/projectcontacts.json");
       setPeople(
         result.data.map(
-          (person) =>
-            new People(
-              person.profile_picture,
-              person.first_name,
-              person.last_name,
-              person.id,
-              person.phone_number
-            )
+          (person) =>new People(person.profile_picture,person.first_name,person.last_name,person.id,person.phone_number)
         )
       );
     };
@@ -54,6 +47,7 @@ export const App = () => {
       })
     );
   };
+  
   const man = people.filter((person) => person.id.includes(id));
 
   
@@ -67,15 +61,13 @@ export const App = () => {
           {/* <Route path="/person/:id" />
                     <PersonPage people={people} />
           <Route /> */}
-          <Route path="/person/:id" render={() => <PersonPage people={people}
-          getId={(e)=>setId(e)} man={man[0]}
-          />} />
+          <Route path="/person/:id" render={() => <PersonPage people={people} getId={(e)=>setId(e)} man={man[0]}/>} />
 
           <Route exact path="/">
             <SearchBar getQuery={(e) => filterPeople(e)} />
             <PeopleView
               people={query ? query : people}
-              maximumLoadedCards={100}
+              maximumLoadedCards={105}
             />
           </Route>
           <Route exact path="/homepage" component={HomePage} />

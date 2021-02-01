@@ -4,13 +4,10 @@ const SearchBar = ({ getQuery }) => {
   const [text, setText] = useState("");
 
   const onChange = (q) => {
-    console.log(q);
     setText(q);
     getQuery(q);
   };
-  // const onSubmit = () => {
-  //   console.log("submit")
-  // }
+
   return (
     <section className="search">
       <form>

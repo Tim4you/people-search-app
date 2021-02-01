@@ -4,22 +4,21 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="navbar bg-primary">
-      <h1>
-        <i className={"fab fa-github"} /> People Finder
-      </h1>
+      <Link to="/homepage">
+        <h1>
+          <i className="fas fa-arrow-alt-circle-right" /> People Finder
+        </h1>
+      </Link>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Search</Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/homepage">Home</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/login">Login</Link>
-        </li>
-        <li>
-          <Link to="/homepage">Homepage</Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

@@ -26,8 +26,8 @@ const PeopleView = ({ people, maximumLoadedCards }) => {
       next={() => setPage((page) => page + 1)}
       hasMore={true}
       loader={
-        page === maximumLoadedCards ? 
-        (<h4>Hey bro!!! you are tring to load more than 1000 people...</h4>) 
+        page > maximumLoadedCards ? 
+        (<h4>You are tring to load more than 1000 people. Contact an admin for more.</h4>) 
         : 
         (<h4>You found <strong>{items.length}</strong> people</h4>)
       }

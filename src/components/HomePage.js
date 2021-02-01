@@ -1,14 +1,19 @@
 import React, { Fragment } from "react";
 import { Jumbotron, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 
 const HomePage = () => {
   return (
     <Fragment>
-      <div style={{ width: "600px", height: "600px", background: "gray" }}>
-        <h3>HomePage</h3>
-        <button variant="outline-secondary" href="#/SearchBar">
-          Woof!
-        </button>
+      <div className="homepage ">
+        <h1>SEARCH ANYBODY EVERYWHERE ON PEOPLE FINDER WEBSITE</h1>
+        <p>Did you know that you can search for people by their phone number, absolutely free, on our website? No? Give it a try!</p>
+        <Link className="card-btn" to="/">
+        <div className="home-btn">   Let's Go  </div>     
+
+        
+          </Link>
       </div>
     </Fragment>
   );

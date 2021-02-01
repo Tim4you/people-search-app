@@ -8,7 +8,7 @@ const PeopleCard = ({person}) => {
   // console.log(person);
   return (
     <div className="card">
-      <img src={person.profile_picture} alt="" />
+      <img className="card-img" src={person.profile_picture} alt="" />
       <ul>
         <li> 
           <strong>Firstname:</strong> {person.first_name}
@@ -21,7 +21,7 @@ const PeopleCard = ({person}) => {
         </li>
       </ul>
       <Link className="card-btn"  to={`person/${person.id}`}>
-      <div className="btn btn-dark btn-sm my-1">        
+      <div className="btn btn-sm my-1">        
         More
       </div>
       </Link>
